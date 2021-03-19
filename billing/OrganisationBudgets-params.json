@@ -1,0 +1,18 @@
+[
+    {
+        "ParameterKey": "ServicesAccountId",
+        "ParameterValue": "269065460843"
+    },
+    {
+        "ParameterKey": "AuditAccountId",
+        "ParameterValue": "246247269586"
+    },
+    {
+        "ParameterKey": "LogsAccountId",
+        "ParameterValue": "756896584575"
+    },
+    {
+        "ParameterKey": "PersonalAccountId",
+        "ParameterValue": "770895255011"
+    }
+]

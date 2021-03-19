@@ -1,0 +1,147 @@
+---
+Description: "Basic Budget test"
+Parameters:
+  ServicesAccountId:
+    Type: String
+    Description: Services Account ID
+  AuditAccountId:
+    Type: String
+    Description: Audit Account ID
+  LogsAccountId:
+    Type: String
+    Description: Logs Account ID
+  PersonalAccountId:
+    Type: String
+    Description: Personal Account ID
+Resources:
+  ServicesBudget:
+    Type: "AWS::Budgets::Budget"
+    Properties:
+      Budget:
+        BudgetLimit:
+          Amount: 10
+          Unit: USD
+        TimeUnit: MONTHLY
+        BudgetType: COST
+        CostFilters:
+          LinkedAccount: [!Ref ServicesAccountId]
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 99
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+  AuditBudget:
+    Type: "AWS::Budgets::Budget"
+    Properties:
+      Budget:
+        BudgetLimit:
+          Amount: 10
+          Unit: USD
+        TimeUnit: MONTHLY
+        BudgetType: COST
+        CostFilters:
+          LinkedAccount: [!Ref AuditAccountId]
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 99
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+  LogsBudget:
+    Type: "AWS::Budgets::Budget"
+    Properties:
+      Budget:
+        BudgetLimit:
+          Amount: 10
+          Unit: USD
+        TimeUnit: MONTHLY
+        BudgetType: COST
+        CostFilters:
+          LinkedAccount: [!Ref LogsAccountId]
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 99
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+  PersonalBudget:
+    Type: "AWS::Budgets::Budget"
+    Properties:
+      Budget:
+        BudgetLimit:
+          Amount: 10
+          Unit: USD
+        TimeUnit: MONTHLY
+        BudgetType: COST
+        CostFilters:
+          LinkedAccount: [!Ref PersonalAccountId]
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 99
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+  BillingBudget:
+    Type: "AWS::Budgets::Budget"
+    Properties:
+      Budget:
+        BudgetLimit:
+          Amount: 50
+          Unit: USD
+        TimeUnit: MONTHLY
+        BudgetType: COST
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 99
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: aws-root.siauliai@slmail.me
+Outputs:
+  BudgetId:
+    Value: !Ref ServicesBudget
