@@ -14,5 +14,9 @@
     {
         "ParameterKey": "PersonalAccountId",
         "ParameterValue": "770895255011"
+    },
+    {
+        "ParameterKey": "NotificationsEmail",
+        "ParameterValue": "aws-root.siauliai@slmail.me"
     }
 ]

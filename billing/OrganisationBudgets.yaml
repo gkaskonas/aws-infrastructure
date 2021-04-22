@@ -1,5 +1,5 @@
 ---
-Description: "Basic Budget test"
+Description: "Organisation Budgets"
 Parameters:
   ServicesAccountId:
     Type: String
@@ -13,6 +13,8 @@ Parameters:
   PersonalAccountId:
     Type: String
     Description: Personal Account ID
+  NotificationsEmail:
+    Type: String
 Resources:
   ServicesBudget:
     Type: "AWS::Budgets::Budget"
@@ -32,14 +34,14 @@ Resources:
             Threshold: 99
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
         - Notification:
             NotificationType: ACTUAL
             ComparisonOperator: GREATER_THAN
             Threshold: 80
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
   AuditBudget:
     Type: "AWS::Budgets::Budget"
     Properties:
@@ -58,14 +60,14 @@ Resources:
             Threshold: 99
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
         - Notification:
             NotificationType: ACTUAL
             ComparisonOperator: GREATER_THAN
             Threshold: 80
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
   LogsBudget:
     Type: "AWS::Budgets::Budget"
     Properties:
@@ -84,14 +86,14 @@ Resources:
             Threshold: 99
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
         - Notification:
             NotificationType: ACTUAL
             ComparisonOperator: GREATER_THAN
             Threshold: 80
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
   PersonalBudget:
     Type: "AWS::Budgets::Budget"
     Properties:
@@ -110,14 +112,14 @@ Resources:
             Threshold: 99
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
         - Notification:
             NotificationType: ACTUAL
             ComparisonOperator: GREATER_THAN
             Threshold: 80
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
   BillingBudget:
     Type: "AWS::Budgets::Budget"
     Properties:
@@ -134,14 +136,14 @@ Resources:
             Threshold: 99
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
         - Notification:
             NotificationType: ACTUAL
             ComparisonOperator: GREATER_THAN
             Threshold: 80
           Subscribers:
             - SubscriptionType: EMAIL
-              Address: aws-root.siauliai@slmail.me
+              Address: !Ref NotificationsEmail
 Outputs:
   BudgetId:
     Value: !Ref ServicesBudget
