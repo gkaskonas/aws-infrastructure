@@ -1,70 +1,70 @@
 [
-    {
-        "ParameterKey": "CreateRdsSnapshot",
-        "ParameterValue": "No"
-    },
-    {
-        "ParameterKey": "CrossAccountRoles",
-        "ParameterValue": ""
-    },
-    {
-        "ParameterKey": "DefaultTimezone",
-        "ParameterValue": "UTC"
-    },
-    {
-        "ParameterKey": "LogRetentionDays",
-        "ParameterValue": "7"
-    },
-    {
-        "ParameterKey": "MemorySize",
-        "ParameterValue": "128"
-    },
-    {
-        "ParameterKey": "Regions",
-        "ParameterValue": "eu-west-1"
-    },
-    {
-        "ParameterKey": "ScheduleLambdaAccount",
-        "ParameterValue": "Yes"
-    },
-    {
-        "ParameterKey": "ScheduleRdsClusters",
-        "ParameterValue": "No"
-    },
-    {
-        "ParameterKey": "ScheduledServices",
-        "ParameterValue": "EC2"
-    },
-    {
-        "ParameterKey": "SchedulerFrequency",
-        "ParameterValue": "60"
-    },
-    {
-        "ParameterKey": "StartedTags",
-        "ParameterValue": ""
-    },
-    {
-        "ParameterKey": "SchedulingActive",
-        "ParameterValue": "Yes"
-    },
-    {
-        "ParameterKey": "SendAnonymousData",
-        "ParameterValue": "No"
-    },
-    {
-        "ParameterKey": "StoppedTags",
-        "ParameterValue": "No"
-    },
-    {
-        "ParameterKey": "TagName",
-        "ParameterValue": "Schedule"
-    },
-    {
-        "ParameterKey": "Trace",
-        "ParameterValue": "Yes"
-    },
-    {
-        "ParameterKey": "UseCloudWatchMetrics",
-        "ParameterValue": "Yes"
-    }
+  {
+    "ParameterKey": "CreateRdsSnapshot",
+    "ParameterValue": "No"
+  },
+  {
+    "ParameterKey": "CrossAccountRoles",
+    "ParameterValue": "arn:aws:iam::119184259962:role/StackSet-cfCrossAccountSc-EC2SchedulerCrossAccount-MARBRWBH26ZB,arn:aws:iam::380477309410:role/StackSet-cfCrossAccountSc-EC2SchedulerCrossAccount-45RP1OVLTU3Z"
+  },
+  {
+    "ParameterKey": "DefaultTimezone",
+    "ParameterValue": "UTC"
+  },
+  {
+    "ParameterKey": "LogRetentionDays",
+    "ParameterValue": "7"
+  },
+  {
+    "ParameterKey": "MemorySize",
+    "ParameterValue": "128"
+  },
+  {
+    "ParameterKey": "Regions",
+    "ParameterValue": "eu-west-1"
+  },
+  {
+    "ParameterKey": "ScheduleLambdaAccount",
+    "ParameterValue": "Yes"
+  },
+  {
+    "ParameterKey": "ScheduleRdsClusters",
+    "ParameterValue": "No"
+  },
+  {
+    "ParameterKey": "ScheduledServices",
+    "ParameterValue": "Both"
+  },
+  {
+    "ParameterKey": "SchedulerFrequency",
+    "ParameterValue": "5"
+  },
+  {
+    "ParameterKey": "StartedTags",
+    "ParameterValue": ""
+  },
+  {
+    "ParameterKey": "SchedulingActive",
+    "ParameterValue": "Yes"
+  },
+  {
+    "ParameterKey": "SendAnonymousData",
+    "ParameterValue": "No"
+  },
+  {
+    "ParameterKey": "StoppedTags",
+    "ParameterValue": "No"
+  },
+  {
+    "ParameterKey": "TagName",
+    "ParameterValue": "Schedule"
+  },
+  {
+    "ParameterKey": "Trace",
+    "ParameterValue": "Yes"
+  },
+  {
+    "ParameterKey": "UseCloudWatchMetrics",
+    "ParameterValue": "Yes"
+  }
 ]

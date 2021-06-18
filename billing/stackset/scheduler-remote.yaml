@@ -1,5 +1,5 @@
 Description: (SO0030) - aws-instance-scheduler cross account role, version v1.3.3
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -15,7 +15,8 @@ Parameters:
     Type: String
     AllowedPattern: (^[0-9]{12}$)
     ConstraintDescription: Account number is a 12 digit number
-    Description: Account number of Instance Scheduler account to give access to manage
+    Description:
+      Account number of Instance Scheduler account to give access to manage
       EC2 and RDS  Instances in this account.
 Resources:
   EC2SchedulerCrossAccountRole:
@@ -27,12 +28,12 @@ Resources:
             Effect: Allow
             Principal:
               AWS: !Join
-                - ''
-                - - 'arn:aws:iam::'
-                  - !Ref 'InstanceSchedulerAccount'
+                - ""
+                - - "arn:aws:iam::"
+                  - !Ref "InstanceSchedulerAccount"
                   - :root
               Service: lambda.amazonaws.com
-        Version: '2012-10-17'
+        Version: "2012-10-17"
       Path: /
       Policies:
         - PolicyDocument:
@@ -43,9 +44,9 @@ Resources:
                   - rds:StopDBInstance
                 Effect: Allow
                 Resource: !Join
-                  - ''
-                  - - 'arn:aws:rds:*:'
-                    - !Ref 'AWS::AccountId'
+                  - ""
+                  - - "arn:aws:rds:*:"
+                    - !Ref "AWS::AccountId"
                     - :snapshot:*
               - Action:
                   - rds:AddTagsToResource
@@ -55,9 +56,9 @@ Resources:
                   - rds:StopDBInstance
                 Effect: Allow
                 Resource: !Join
-                  - ''
-                  - - 'arn:aws:rds:*:'
-                    - !Ref 'AWS::AccountId'
+                  - ""
+                  - - "arn:aws:rds:*:"
+                    - !Ref "AWS::AccountId"
                     - :db:*
               - Action:
                   - rds:AddTagsToResource
@@ -66,9 +67,9 @@ Resources:
                   - rds:StopDBCluster
                 Effect: Allow
                 Resource: !Join
-                  - ''
-                  - - 'arn:aws:rds:*:'
-                    - !Ref 'AWS::AccountId'
+                  - ""
+                  - - "arn:aws:rds:*:"
+                    - !Ref "AWS::AccountId"
                     - :cluster:*
               - Action:
                   - ec2:StartInstances
@@ -77,9 +78,9 @@ Resources:
                   - ec2:DeleteTags
                 Effect: Allow
                 Resource: !Join
-                  - ''
-                  - - 'arn:aws:ec2:*:'
-                    - !Ref 'AWS::AccountId'
+                  - ""
+                  - - "arn:aws:ec2:*:"
+                    - !Ref "AWS::AccountId"
                     - :instance/*
               - Action:
                   - rds:DescribeDBClusters
@@ -91,18 +92,20 @@ Resources:
                   - ssm:DescribeMaintenanceWindowExecutions
                   - tag:GetResources
                 Effect: Allow
-                Resource: '*'
-            Version: '2012-10-17'
+                Resource: "*"
+            Version: "2012-10-17"
           PolicyName: EC2InstanceSchedulerRemote
     Metadata:
       cfn_nag:
         rules_to_suppress:
           - id: W11
-            reason: All policies have been scoped to be as restrictive as possible.
+            reason:
+              All policies have been scoped to be as restrictive as possible.
               This solution needs to access ec2/rds resources across all regions.
 Outputs:
   CrossAccountRole:
-    Description: Arn for cross account role for Instance scheduler, add this arn to
+    Description:
+      Arn for cross account role for Instance scheduler, add this arn to
       the list of crossaccount roles (CrossAccountRoles) parameter of the Instance
       Scheduler template.
-    Value: !GetAtt 'EC2SchedulerCrossAccountRole.Arn'
+    Value: !GetAtt "EC2SchedulerCrossAccountRole.Arn"

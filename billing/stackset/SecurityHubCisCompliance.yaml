@@ -1,6 +1,28 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
 Description: CIS AWS Foundations Benchmark Metric Alarms
+Parameters:
+  EnableCIS31:
+    Type: String
+    Default: Yes
+    AllowedValues:
+      - Yes
+      - No
+  EnableCIS32:
+    Type: String
+    Default: Yes
+    AllowedValues:
+      - Yes
+      - No
+Conditions:
+  EnableCIS31:
+    !Equals 
+      - !Ref EnableCIS31
+      - "Yes"
+  EnableCIS32:
+    !Equals 
+      - !Ref EnableCIS32
+      - "Yes"
 Resources:
 #===============================================================================================================================
 # MetricFilter and CloudWatch Alarm Section
@@ -11,6 +33,7 @@ Resources:
 # ------------------------------------------------------------------------------------------------------------------------------------
   UnauthorizedApiCallsAlarm:
     Type: AWS::CloudWatch::Alarm
+    Condition: EnableCIS31
     Properties:
       AlarmName: CIS-Unauthorized Activity Attempt
       AlarmDescription: Alarm if Multiple unauthorized actions or logins attempted
@@ -26,6 +49,7 @@ Resources:
       ComparisonOperator: GreaterThanOrEqualToThreshold
   UnauthorizedApiCallsFilter:
     Type: AWS::Logs::MetricFilter
+    Condition: EnableCIS31
     Properties:
       LogGroupName: aws-controltower/CloudTrailLogs
       FilterPattern: |-
@@ -43,6 +67,7 @@ Resources:
 # ------------------------------------------------------------------------------------------------------------------------------------
   NoMfaConsoleLoginsAlarm:
     Type: AWS::CloudWatch::Alarm
+    Condition: EnableCIS32
     Properties:
       AlarmName: CIS-Console Signin Without MFA
       AlarmDescription: Alarm if there is a Management Console sign-in without MFA
@@ -58,6 +83,7 @@ Resources:
       ComparisonOperator: GreaterThanOrEqualToThreshold
   NoMfaConsoleLoginsFilter:
     Type: AWS::Logs::MetricFilter
+    Condition: EnableCIS32
     Properties:
       LogGroupName: aws-controltower/CloudTrailLogs
       FilterPattern: |-
@@ -76,8 +102,6 @@ Resources:
 # ------------------------------------------------------------------------------------------------------------------------------------
   RootAccountLoginsAlarm:
     Type: AWS::CloudWatch::Alarm
-    DependsOn:
-    - NoMfaConsoleLoginsAlarm
     Properties:
       AlarmName: CIS-Root Activity
       AlarmDescription: Alarm if a 'root' user uses the account

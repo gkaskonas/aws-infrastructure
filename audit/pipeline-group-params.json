@@ -1,0 +1,14 @@
+[
+    {
+        "ParameterKey": "WebsiteDevAccountId",
+        "ParameterValue": "404319983256"
+    },
+    {
+        "ParameterKey": "WebsiteTestAccountId",
+        "ParameterValue": "380477309410"
+    },
+    {
+        "ParameterKey": "WebsiteProdAccountId",
+        "ParameterValue": "119184259962"
+    }
+]

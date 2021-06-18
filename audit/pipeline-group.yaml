@@ -1,0 +1,38 @@
+Description: Pipeline User and group
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  WebsiteDevAccountId:
+    Type: String
+  WebsiteTestAccountId:
+    Type: String
+  WebsiteProdAccountId:
+    Type: String
+Resources:
+  iamPipelineGroup:
+    Type: AWS::IAM::Group
+    Properties: 
+      GroupName: iam-pipeline-group
+      Path: /
+
+  iamPipelineAssumeRolePolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement: 
+          - Effect: Allow
+            Action: 
+              - sts:AssumeRole
+            Resource: 
+              - !Sub arn:aws:iam::${WebsiteDevAccountId}:role/PipelineRole
+              - !Sub arn:aws:iam::${WebsiteTestAccountId}:role/PipelineRole
+              - !Sub arn:aws:iam::${WebsiteProdAccountId}:role/PipelineRole
+      PolicyName: PipelineAssumeRoles 
+      Groups:
+        - !Ref iamPipelineGroup
+
+  iamPipelineUser:
+    Type: AWS::IAM::User
+    Properties:
+      Groups:
+        - !Ref iamPipelineGroup
