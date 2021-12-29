@@ -4,25 +4,25 @@ Description: CIS AWS Foundations Benchmark Metric Alarms
 Parameters:
   EnableCIS31:
     Type: String
-    Default: Yes
+    Default: true
     AllowedValues:
-      - Yes
-      - No
+      - true
+      - false
   EnableCIS32:
     Type: String
-    Default: Yes
+    Default: true
     AllowedValues:
-      - Yes
-      - No
+      - true
+      - false
 Conditions:
   EnableCIS31:
     !Equals 
       - !Ref EnableCIS31
-      - "Yes"
+      - "true"
   EnableCIS32:
     !Equals 
       - !Ref EnableCIS32
-      - "Yes"
+      - "true"
 Resources:
 #===============================================================================================================================
 # MetricFilter and CloudWatch Alarm Section
